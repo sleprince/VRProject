@@ -25,10 +25,12 @@ public class CandyFlossManager : MonoBehaviour
         if (other.tag == "Make")
         {
             floss.enabled = true;
-            Vector3 enlarge = new Vector3(0f, 0f, 0.2f);
+            Vector3 enlarge = new Vector3(0f, 0f, 0.05f);
             floss.transform.localScale += enlarge;
         }
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -38,7 +40,10 @@ public class CandyFlossManager : MonoBehaviour
         {
             Vector3 shrink = new Vector3(0f, 0f, -1.0f);
 
-            floss.transform.localScale -= shrink;
+            floss.transform.localScale += shrink;
+
+            if(floss.transform.localScale.z <= 0.5f )
+                floss.enabled = false;
 
         }
     }
